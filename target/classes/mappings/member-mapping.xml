@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+
+<insert id="insert" parameterType="member">
+	insert into tbl_member(id, pwd, bcrypt, role, name, birth,tel,joindate) 
+	values(#{id},#{pwd}, #{bcrypt}, #{role},#{name},#{birth},#{tel},#{joindate})
+</insert>
+
+
+<update id="update" parameterType="member">
+	update tbl_member set pwd=#{pwd}, bcrypt=#{bcrypt}, name=#{name}, birth=#{birth}, tel=#{tel} where id=#{id}
+</update>
+
+
+<select id="selectAll" parameterType="member" resultType="member">
+	select * from tbl_member
+</select>
+
+
+<select id="selectOne" parameterType="member" resultType="member">
+	select * from tbl_member where id=#{id}
+</select>
+
+
+<select id="login" parameterType="member" resultType="member">
+	select * from tbl_member where id=#{id} and pwd=#{pwd}
+</select>
+
+
+</mapper>

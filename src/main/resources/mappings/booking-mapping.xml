@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="booking">
+
+
+<insert id="insert" parameterType="booking">
+	insert into tbl_booking(idx, id, b_date, b_time, doc) 
+	values(seq_tbl_booking.nextval,#{id},#{b_date},#{b_time},#{doc})
+</insert>
+
+<update id="update" parameterType="booking">
+	update tbl_booking set b_date=#{b_date}, b_time=#{b_time}, doc=#{doc} 
+	where id=#{id} and idx=#{idx} 
+</update>
+
+<delete id="delete" parameterType="booking">
+	delete from tbl_booking 
+	where id=#{id} and idx=#{idx}
+</delete>
+
+<select id="selectAll" parameterType="bmJoin" resultType="bmJoin">
+	select b.id,name,birth,tel,b_date,b_time,doc from tbl_booking b 
+	left join tbl_member m on b.id=m.id order by b_date asc
+</select>
+
+<select id="selectId" parameterType="booking" resultType="booking">
+	select * from tbl_booking where id=#{id} order by b_date asc
+</select>
+
+<select id="selectOne" parameterType="booking" resultType="booking">
+	select * from tbl_booking 
+	where id=#{id} and idx=#{idx}
+</select>
+
+</mapper>

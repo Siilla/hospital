@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reply">
+
+
+<select id="replyList"  parameterType="reply"   resultType="reply"  >
+  select  seq, idx, reply, replayer, replyDate  
+  from tbl_qna_reply where idx=#{idx} order by seq asc 
+</select>
+
+<insert id="replyInsert"  parameterType="reply" >
+ insert into tbl_qna_reply(seq, idx, reply, replayer)
+ values(seq_tbl_qna_reply.nextval, #{idx}, #{reply}, #{replayer} ) 
+</insert>
+
+<delete id="replyDelete"  parameterType="reply"  >
+ delete from tbl_qna_reply where idx=#{idx} and seq=#{seq}
+</delete>
+
+<select id="replyOne">
+  select seq, idx, reply, replayer, replyDate  
+  from tbl_qna_reply where idx=#{idx} and seq=#{seq}
+</select>
+
+</mapper>
